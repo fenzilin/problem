@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+#define rep(i, a, n) for ( int i = a; i <= n; i++)
+#define per(i, a, n) for ( int i = n; i >= a; i--)
+#define debug(x) cout << #x << ": " << x << endl
+#define MOD 1000000007
+typedef unsigned long long LL;
+using namespace std;
+/*=====================Guxier=====================*/
+const int N = 1e5 + 10;
+int n ;
+LL a[N] , b[N];
+LL p[N];   //用来存放每个数位的进制 
+
+LL max(LL &x , LL &y)
+{
+    return x > y ? x : y;
+}
+
+int main()
+{
+    cin >> n;
+    int ma;
+    cin >> ma;
+    rep(i , 1, ma) cin >> a[i], p[i] = max(a[i] + 1, LL(2)); 
+    int mb;
+    cin >> mb;
+    int temp = ma - mb;
+    rep(i , 1, ma) 
+    {
+        if(i - temp > 0)
+        {
+            cin >> b[i];
+            p[i] = max(b[i] + 1, p[i]); 
+        } 
+    }
+
+    rep(i , 1 , ma-1)
+        a[i+1] += ((a[i] - b[i]) *p[i+1] ) %MOD;
+    //此步骤得到的是每个数位的数字，相减，并转换成十进制
+    a[ma] -= b[ma];
+
+    cout << a[ma] % MOD;
+
+    return 0;
+}
