@@ -1,0 +1,8 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  unsigned long long sum=pow(2,64)-1;
+  cout<<sum;
+  return 0;
+}
