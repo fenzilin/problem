@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int qie(int a,int b)
+{
+     if(a==b){
+          return 1;
+     }
+
+     return 1+qie(max(a-b,b),min(a-b,b));
+}
+
+int main()
+{
+     cout<<qie(2019,324);
+     return 0;
+}
