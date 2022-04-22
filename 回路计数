@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+#define N 21
+
+//int to[N+1][N+1];
+//int visit[N+1];
+//long long dp[1<<N][N+1];
+//long long ans=0;
+
+//int gcd(int x,int y){
+//    return y?gcd(y,x%y):x;
+//}
+
+
+////跑不动，到15就寄了 
+//void dfs(int step,int np){
+//    if(step==N){
+//        if(np==1) ans++;
+//        return;
+//    }
+//    else{
+//        for(int i=1;i<=N;i++){
+//            if( np==i || visit[i]==1 || to[np][i]==0 ) continue;
+//            visit[i]=1;
+//            dfs(step+1,i);
+//            visit[i]=0;
+//        }
+//    }
+//}
+int main(){
+//    //状态压缩一般用0做起始下标 
+//    for(int i=1;i<=N-1;i++){
+//        for(int j=i+1;j<=N;j++){
+//            if(gcd(i,j)==1){
+//                to[i-1][j-1]=1;
+//                to[j-1][i-1]=1;
+//            }
+//        }
+//    }
+//    //起始在第一个(0)位置时，没有访问0以外任何点,初始化为1 
+//    dp[1][0]=1; 
+//    for(int i=1;i<(1<<N);i++){
+//        for(int j=0;j<N;j++){
+//            //举例：状态11001,在第2(j=1)个位置，右移 1位1100，和0001相与为0表示该状态与当前所处位置不符，不存在这种情况 
+//            if((i>>j)&1==0) continue;
+//            //寻找从楼j能够到达的下一栋楼k
+//            for(int k=0;k<N;k++){
+//                //i已经访问过j了或者j不能到k 
+//                if((i>>k&1) || !to[j][k]) continue;
+//                //标记访问了k点，并走到k点后加上之前的方法数 
+//                dp[i+(1<<k)][k] += dp[i][j];
+//            }
+//        }
+//    }
+//    //得到的结果是dp[(1<<21)-1][i]也就是所有遍历过，只差最后一步回到源点的情况，因为1和所有数相连，所以就是把i=1-21加起来
+//    for(int i=1;i<=21;i++) ans+=dp[(1<<21)-1][i]; 
+//    cout<<ans;
+    cout<<881012367360; 
+    return 0;
+}
