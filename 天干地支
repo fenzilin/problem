@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int N;
+const char* tian[10] = {"jia","yi","bing","ding","wu","ji","geng","xin","ren","gui"};
+const char* di[12] = {"zi","chou","yin","mao","chen","si","wu","wei","shen","you","xu","hai"};
+
+int main()
+{
+    //40 = gengzi 
+    cin >> N;
+    int a=6,b=0;
+    if(N<=40)
+        for(int i=40;i>N;--i){
+            if(a-1 < 0) a=9; else --a;
+            if(b-1 < 0) b=11; else --b;
+        }
+    else
+        if(N%60-40 == 0) cout << "gengzi";
+        else{
+            int p = 60-(N%60-40);
+            int n = p+N;
+            for(int i=n;i>N;--i){
+                if(a-1 < 0) a=9; else --a;
+                if(b-1 < 0) b=11; else --b;
+            }
+        }
+    
+    cout << tian[a] << di[b];
+    return 0;
+}
