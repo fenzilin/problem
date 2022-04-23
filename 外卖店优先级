@@ -1,0 +1,60 @@
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#define x first
+#define y second
+using namespace std;
+typedef pair<int,int> PII;
+typedef pair<int,PII> PIII;
+const int N=1e5+5;
+int n,m,t;  
+PII val[N];
+bool st[N];
+PII op[N];
+int main()
+{
+    cin>>n>>m>>t;
+    for(int i{};i<m;i++){
+        int x,y;
+        cin>>x>>y;
+        op[i]={x,y};
+    }
+    sort(op,op+m);
+    priority_queue<PIII,vector<PIII>,greater<PIII>> q;
+    for(int i{};i<m;i++){
+        auto t=op[i];
+        int time=t.x,id=t.y;
+        int now=0;
+        if(val[id].x+(-time+val[id].y+1)<0){
+            val[id].x=2;
+            val[id].y=time;
+        }else{
+            if(val[id].y==time) val[id].x+=2;
+            else
+            val[id].x+=2+(-time+val[id].y+1);
+            val[id].y=time;
+        }
+        if(val[id].x>5){
+            q.push({val[id].x+time,{id,time}});
+        }
+        while(q.size()){
+            auto t=q.top();
+            if(t.x-time<=3){
+                q.pop();
+                continue;
+            }
+            else break;
+        }
+    }
+    int ans=0;
+    while(q.size()){
+        auto tmp=q.top();
+        q.pop();
+        if(tmp.x-t<=3) continue;
+        if(st[tmp.y.x]) continue;
+        ans++;
+        st[tmp.y.x]=1;
+    }
+    cout<<ans;
+    return 0;
+}
