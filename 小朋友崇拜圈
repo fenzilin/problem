@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int a[2000000];
+int vis[2000000];
+int m, N, t;
+void dfs(int x, int ans){
+  if(vis[x]){
+      if(a[x] == a[t]){
+          if(ans > m){
+              m = ans;
+          }
+      }
+    return;
+  }
+      vis[x] = 1;
+      dfs(a[x], ans + 1);
+      vis[x] = 0;
+}
+int main()
+{
+   cin>>N;
+   for(int i = 1; i <= N; i++){
+     cin>>a[i];
+   }
+   for(int i = 1; i <= N; i++){
+           t = i;
+        dfs(i, 0);
+  }
+  cout<<m;
+  return 0;
+}
