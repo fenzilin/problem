@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main() 
+{ 
+
+    int a = 128, b = 456789;
+    printf("%d ",a);
+    printf("%o ",a);
+    printf("%X\n",a);
+    printf("%d ",b);
+    printf("%o ",b);
+    printf("%X\n",b);
+    return 0; 
+}
