@@ -1,0 +1,22 @@
+#include<bits/stdc++.h> 
+const int N = 100010;
+bool a[N];
+using namespace std;
+
+int main( )
+{
+    int b,c = 0;
+    cin>>b;
+    for(int i = 1; i <=sqrt(b); i++)
+    {
+        c = i * i;
+        a[c] = true;
+        i++;
+    }
+    for(int i = 1; i <= b; i++)
+    {
+        if(a[i]) cout<<i<<endl;
+        i++;
+    }
+    return 0;
+}
