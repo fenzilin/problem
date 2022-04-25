@@ -1,0 +1,12 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int a,b; 
+    cin>>a>>b;
+    
+    cout<<setw(a)<<fixed<<setprecision(b)<<18.16054<<" ";
+	cout<<setw(a)<<fixed<<setprecision(b)<<17.676767;
+    return 0;
+}
