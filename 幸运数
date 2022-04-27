@@ -1,0 +1,19 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int a;
+    bool flag = 1;
+    cin>>a;
+    while(a)
+    {
+        int b = a;
+        if(b%10!=4&&b%10!=7) flag = 0;
+        a /= 10;
+    }
+    if(flag) printf("YES");
+    else printf("NO");
+    return 0;
+}
