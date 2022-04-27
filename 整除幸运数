@@ -1,0 +1,31 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int n,flag;
+    cin>>n;
+    for(int i =1; i<=n;i++)
+    {
+        int j =i;
+        while(j)
+        {
+            if(j%10!=4&&j%10!=7)
+            {
+                flag = 0;
+                break;
+            }
+            else
+                flag = 1;
+            j/=10;
+        }
+        if(flag==1&&n%i==0)
+        {
+            cout<<"YES"<<endl;
+            return 0;
+        }
+    }
+    cout<<"NO"<<endl;
+    return 0;
+}
