@@ -1,0 +1,12 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int x,y,n;
+    cin>>x>>y>>n;
+    n = x*pow(y/x,n-1);
+    cout<<n;
+    return 0;
+}
