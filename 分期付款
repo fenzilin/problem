@@ -1,0 +1,13 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    double a,b,c,d,e;
+    cin>>a>>b>>c;
+    d = b/(12*100);
+    e = (a*d*pow(1+d,c))/(pow(1+d,c)-1);
+    printf("%.1lf",e);
+    return 0;
+}
