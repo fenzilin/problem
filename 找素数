@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool isPrime(int num) {
+//2, 3质数单独做讨论
+  if(num == 2 || num == 3) return true;
+//我们发现5以上的质数均在6两侧，但是注意6两侧的数不一定是质数
+  if(num % 6 != 1 && num % 6 != 5) return false;
+  for(int i = 5; i <= sqrt(num); i += 6) {
+    if(num % i == 0 || num % (i+2) == 0)
+      return false;
+  }
+  return true; 
+}
+
+int main() {
+  int i = 2, cnt = 0;
+  while(true) {
+    if(isPrime(i)) cnt++;
+    if(cnt == 100002) {
+      cout << i << endl;
+      break;
+    }
+    i++;
+  }
+  return 0;
+}
