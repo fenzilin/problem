@@ -1,0 +1,22 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+const int N=1e5;
+int d[N]={0};
+int main(){
+    int n,m;
+    cin>>n>>m;
+    
+    for(int i=0;i<m;++i){
+        cin>>d[i];
+    }
+    for(int i=m;i<n;++i){
+        int x;
+        cin>>x;
+        int *p=min_element(d,d+m);
+        *p+=x; 
+    }
+    int *maxt=max_element(d,d+m);
+    cout<<*maxt<<endl;
+    return 0;
+} 
