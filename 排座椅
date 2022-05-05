@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<iostream>
+#include<algorithm>
+#define MAXN 1001
+using namespace std;
+ 
+int x[MAXN];
+int y[MAXN];
+int c[MAXN];
+int o[MAXN];
+int cmp(int a, int b)
+{
+    return a > b;
+}
+ 
+int main()
+{
+    int M, N, K, L, D;
+    cin >> M >> N >> K >> L >> D;
+    int xi, yi, pi, qi;
+    while (D--)
+    {
+        cin >> xi >> yi >> pi >> qi;
+        if (xi == pi)
+        {
+            x[min(yi, qi)]++;
+        }
+        else
+        {
+            y[min(xi, pi)]++;
+        }
+    }
+ 
+    for (int i = 1; i <= K; i++)
+    {
+        int maxn = -1;
+        int p;
+        for (int j = 1; j < M; j++)
+        {
+            if (y[j]>maxn)
+            {
+                maxn = y[j];
+                p = j;
+            }
+        }
+        y[p] = 0;
+        c[p]++;
+    }
+    for (int i = 1; i <= L; i++)
+    {
+        int maxn = -1;
+        int p;
+        for (int j = 1; j < N; j++)
+        {
+            if (x[j]>maxn)
+            {
+                maxn = x[j];
+                p = j;
+            }
+        }
+        x[p] = 0;
+        o[p]++;
+    }
+    for (int i = 0; i<MAXN; i++)
+    {
+        if (c[i])
+            printf("%d ", i);
+    }
+    printf("\n");
+    for (int i = 0; i<MAXN; i++)
+    {
+        if (o[i])
+            printf("%d ", i);
+    }
+    return 0;
+}
