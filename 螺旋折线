@@ -1,0 +1,24 @@
+#include <iostream>
+#include "cmath"
+#include "algorithm"
+using namespace std;
+int main()
+{
+    long long   X,Y;
+    cin>>X>>Y;
+
+    long long  n = max(abs(X),abs(Y));//获取正方形
+    long long t ;  //判断（X,Y）与(-n,-n)的距离
+    if(Y==-n){  //底边
+        t =   X-(-n);
+    }else if(X==n ){  //在右边
+        t = 2*n+Y-(-n);
+    }else if(Y==n){  //上边
+        t =4*n + (n-X);
+    }else{  //左边
+        t = 6*n +n-Y;
+    }
+    cout<<4*n*(n+1)-t;
+
+    return 0;
+}
