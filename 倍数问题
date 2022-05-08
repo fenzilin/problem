@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1010;
+stack<int> st[N];  //用栈数组来存同余
+int a[100010];
+int main(){
+    int n, k; cin >> n >> k;
+    for(int i=1;i<=n;i++)  cin >> a[i];
+
+    sort(a + 1, a + n + 1);         //先从小到大排序，然后用栈来存同余的数
+    for(int i = 1 ; i <= n ; i++)   //进栈是从小到大，出栈按从大到小,根据栈先进后出的特性
+        st[a[i] % k].push(a[i]);    //将0~k-1压入栈中
+
+    int res = 0;
+    for(int i = 0 ; i < k ; i++){       //遍历a的余数从0~n-1
+        if(!st[i].size())           //若该栈的元素全部弹出即为空，则跳过继续遍历a的下一个余数
+            continue;
+        for(int j = i ; j < k ; j++){  //在a的余数确定的情况下，依次遍历b的余数
+            if(!st[j].size())
+                continue;         //同16行
+            int rm = (k - i - j +k) % k, tmp = 0, ans1, ans2, ans3;  //代码关键，利用a,b的关系逆推c这里只需满足（nk-i-j）中的n>=2即可，因为i和j的和最大不会超过2k，1k有些数据显然会为负值，造成程序错误
+            if(rm < j)  //保证rm不是前面以及遍历过的余数栈
+                continue;
+            if(st[i].size()){
+                ans1 = st[i].top();  //用ans1记录此时存a的余数栈的最后一个被压入栈的元素
+                tmp += ans1;
+                st[i].pop();   //删除栈中最后一个元素
+                if(st[j].size()){
+                    ans2 = st[j].top();  //用ans2记录此时存b的余数栈的最后一个被压入栈的元素
+                    tmp += ans2;
+                    st[j].pop();     //删除b栈中的元素
+                    if(st[rm].size()){
+                        ans3 = st[rm].top();
+                        tmp += ans3;
+                        st[rm].pop();
+                        res = max(res, tmp);
+                        st[rm].push(ans3);  //回退，保证下次遍历不受影响
+                    }
+                    st[j].push(ans2);     //回退，保证下次遍历不受影响
+                }
+                st[i].push(ans1);      //回退，保证下次遍历不受影响
+            }
+        }
+    }
+    cout << res << endl;
+    return 0;
+}
