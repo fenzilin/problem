@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+//使用全排列可以不用动脑子（）
+int main(){
+    char s[]="LANQIAO";
+    sort(s,s+7); 
+    int ans=1;
+    while(next_permutation(s,s+7))
+        ans++;
+    printf("%d",ans);
+}
