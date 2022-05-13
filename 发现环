@@ -1,0 +1,89 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+const int len=1e5+5;
+int n;
+int pre[len];
+int rrank[len];
+int visited[len];
+vector<int> path[len];
+void init()
+{
+  for(int i=1;i<=n;i++)
+     pre[i]=i;
+}
+int find(int x)
+{
+  while(x!=pre[x]){
+    x=pre[x];
+  }
+  return x;
+}
+int join(int x,int y)
+{
+  int nx=find(x);
+  int ny=find(y);
+  if(nx!=ny){
+    if(rrank[nx]>rrank[ny])
+       pre[ny]=nx;
+    else if(rrank[nx]<rrank[ny])
+       pre[nx]=ny;
+    else{
+      pre[ny]=nx;
+      rrank[nx]++;
+    }
+    return 0;
+  }
+  else{
+    return nx;
+  }
+}
+int ans[len];
+void dfs(int st,int ed,int k)
+{
+    visited[st]=1;
+    ans[k]=st;
+  if(st==ed && k>1){
+      sort(ans,ans+k+1);
+    for(int i=0;i<=k;i++){
+      cout<<ans[i]<<" ";
+    }
+    return;
+  }
+  else{
+    for(auto i:path[st]){
+      if(visited[i]==0){
+        dfs(i,ed,k+1);
+        visited[i]=0;
+      }   
+    }
+  }
+
+    
+}
+int main()
+{
+  // 请在此输入您的代码
+  cin>>n;
+  init();
+  int c; 
+  for(int i=1;i<=n;i++){
+    int a,b;
+    cin>>a>>b;
+    path[a].push_back(b);
+    path[b].push_back(a);
+    c=join(a,b);
+    if(c){
+        //cout<<a<<b<<endl;
+        dfs(a,b,0);
+      break;
+    }
+    else{
+      continue;
+    }
+  }
+  
+  
+  return 0;
+}
