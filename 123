@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+const int N=2000010;
+typedef unsigned long long LL;
+LL a[N];
+LL s[N];
+LL find(LL x){
+  LL l=1,r=N-1;
+  while(l<r){
+    LL mid=(l+r)>>1;
+    if(a[mid]>=x)r=mid;
+    else l=mid+1;
+  }
+  // if(a[l]==x)
+  return l;
+  // return l+1;
+}
+int main()
+{
+  // 请在此输入您的代码
+//      freopen("in.txt", "r", stdin);
+//      freopen("out.txt", "w", stdout);
+  for(int i=1;i<N;i++){
+    a[i]=a[i-1]+i;                    // 前面1~i区间共有a[i]个数；
+    s[i]=s[i-1]+1LL*(i+1)*(i)/2;//1~i区间所有数的和；
+    // if(i<10)cout<<s[i]<<" ";
+  
+  }
+  // cout<<endl;
+  int T;
+  scanf("%d",&T);
+  LL l,r;
+
+  while(T--){
+   scanf("%lld%lld",&l,&r);
+    LL x=find(l),y=find(r);//找到l,r分别在第几个区间
+    // cout<<a<<" "<<b<<endl;
+    if(x==y){
+      cout<<1LL*(l-a[x-1]+r-a[x-1])*(r-l+1)/2<<endl;
+    }
+    else{
+      LL ans=s[y]-s[x-1];
+      // cout<<ans<<endl;
+      
+      ans-=1LL*(l-1-a[x-1]+1)*(l-1-a[x-1])/2;
+      ans-=1LL*(r+1-a[y-1]+y)*(y-r+a[y-1])/2;
+      printf("%lld\n",ans);
+      
+    }
+  }
+  return 0;
+}
