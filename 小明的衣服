@@ -1,0 +1,32 @@
+// long long 中间也是 long long always 
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+int main(){
+    int n;
+    cin>>n;
+    
+    priority_queue<ll,vector<ll>,greater<ll> > pq;
+    for(int i=0; i<n; i++){
+        ll j;
+        cin>>j;
+        pq.push(j);
+    }
+    
+    ll res=0;
+    while(pq.size()>1){
+        ll left=pq.top();
+        pq.pop();
+        ll right=pq.top();
+        pq.pop();
+        
+        pq.push(left+right);
+        res+=(left+right);
+    }
+    
+    cout<<res<<endl;
+    
+    return 0;
+}
