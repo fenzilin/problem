@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 0x3f3f3f3f3f3f3f3f//这个数挺大的，我看到别人的代码，大家都取的这个数
+void floyd(long long **imag,long long n);
+int main(void)
+{
+    long long n,m,q;
+    scanf("%lld %lld %lld",&n,&m,&q);
+    long long **imag;
+    imag=(long long **)malloc(sizeof(long long **)*(n+1));
+    for(long long i=1;i<=n;i++)
+    {
+        imag[i]=(long long *)malloc(sizeof(long long *)*(n+1));
+        for(long long j=1;j<=n;j++)
+        {
+            imag[i][j]=MAX;
+        }
+        imag[i][i]=0;
+    }
+    for(long long i=0;i<m;i++)
+    {
+        long long s,e,w;
+        scanf("%lld %lld %lld",&s,&e,&w);
+        if(imag[s][e]>w)//我不是很理解，难道会重复输入同一个路径？
+        {
+            
+        imag[s][e]=w;
+        imag[e][s]=w;//应该是双向的
+        }
+    }
+    floyd(imag,n);
+    for(long long i=0;i<q;i++)
+    {
+        long long s,e;
+        scanf("%lld %lld",&s,&e);
+        if(imag[s][e]==MAX)
+            printf("-1\n");
+        else
+        printf("%lld\n",imag[s][e]);
+    }
+  return 0;
+}
+void floyd(long long **imag,long long n)
+{
+    for(long long k=1;k<=n;k++)
+    {
+        for(long long i=1;i<=n;i++)
+        {
+            for(long long j=1;j<=n;j++)
+            {
+                if(imag[i][j]>imag[i][k]+imag[k][j])
+                    imag[i][j]=imag[i][k]+imag[k][j];
+            }
+        }
+    }
+}
