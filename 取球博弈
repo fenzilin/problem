@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    int w[3]{}, n[5];
+    for (int i = 0; i < 3; ++i) cin >> w[i];
+    for (int i = 0; i < 5; ++i) cin >> n[i];
+    int low = min({ w[0], w[1], w[2] }), cache[1001][2][2];
+    memset(cache, 0x3f, sizeof(cache));
+    function<int(int,int,int)> dfs = [&](int x, int a, int b)->int {
+        if (x < 0) return 1;
+        if (x < low) return a - b;
+        return cache[x][a][b] != 0x3f3f3f3f ? cache[x][a][b] : cache[x][a][b] = -min({ dfs(x - w[0], b, a ^ (w[0]&1)), dfs(x - w[1], b, a ^ (w[1]&1)), dfs(x - w[2], b, a ^ (w[2]&1))});
+    };
+    for (int i = 0; i < 5; ++i) cout << [t = dfs(n[i], 0, 0)]{return (t == 1 ? '+' : t == -1 ? '-' : '0');}() << " ";
+    return 0;
+}
