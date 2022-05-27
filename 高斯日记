@@ -1,0 +1,53 @@
+//注意一下月份前面需要加“0”
+#include <iostream>
+using namespace std;
+bool panduan (int year)
+{
+    if((year%4==0&&year%100!=0)||year%400==0)
+        return true;
+    else
+        return false;
+}
+int main()
+{
+    int year=1777;
+    int month=4;
+    int day=30;
+    for(int i=0;i<8112;i++)
+    {
+        day++;
+        if(month==12&&day==32)
+        {
+            year++;
+            month=1;
+            day=1;
+            continue;
+        }
+        if((month==1||month==3||month==5||month==7||month==8||month==10||month==12)&&day==32)
+        {
+            month++;
+            day=1;
+            continue;
+        }
+        if((month==4||month==6||month==9||month==11)&&day==31)
+        {
+            month++;
+            day=1;
+            continue;
+        }
+        if((month==2&& panduan(year))&&day==30)
+        {
+            month++;
+            day=1;
+            continue;
+        }
+        if((month==2&&!panduan(year))&&day==29)
+        {
+            month++;
+            day=1;
+            continue;
+        }
+    }
+    cout<<year<<"-"<<"0"<<month<<"-"<<day<<endl;
+    return 0;
+}
