@@ -1,0 +1,22 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int n, count = 1, sum = 0;
+    cin>>n;
+    int temp1 = n, temp2 = n;
+
+    while(temp1/10){
+        temp1 /= 10;
+        count++;
+    }
+    for(int i = count;i>=1;i--){
+        sum += pow(temp2%10,i);
+        temp2 /= 10;
+    }
+    if(sum == n) cout<<"YES";
+    else cout<<"NO";
+    return 0;
+}
