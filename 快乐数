@@ -1,0 +1,32 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+bool isH(int n)
+{
+    int temp = 0;
+    int result = 0;
+    if(n==1) return true;
+    while(true)
+    {
+        temp = n % 10;
+        n /= 10;
+        result += pow(temp, 2);
+        if(n==0){
+            if(result==1) return true;
+            else if(result==4) return false;
+            else{
+                n = result;
+                result = 0;
+            }
+        }
+    }
+    return false;
+}
+int main( )
+{
+    int n;
+    cin>>n;
+    if(isH(n)) cout<<"YES";
+    else cout<<"NO";
+    return 0;
+}
