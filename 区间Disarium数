@@ -1,0 +1,33 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+bool isD(int num)
+{
+    int count = 1, sum = 0;
+    int temp1 = num, temp2 = num;
+
+    while(temp1/10){
+        temp1 /= 10;
+        count++;
+    }
+    for(int i = count;i>=1;i--){
+        sum += pow(temp2%10,i);
+        temp2 /= 10;
+    }
+    if(sum == num) return true;
+    else return false;
+}
+
+int main( )
+{
+    int left, right;
+    cin>>left>>right;
+    for(int i = left; i <= right; i++)
+    {
+        if(isD(i))
+        {
+            cout<<i<<" ";
+        }
+    }
+    return 0;
+}
