@@ -1,0 +1,25 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+bool check(int a)
+{
+    while(a)
+    {
+        if(a%10==6) return true;
+        a /= 10;
+    }
+    return false;
+}
+int main( )
+{
+    int n;
+    cin>>n;
+    for(int i = 1; i <= n; i++)
+    {
+        if(i%6==0&&check(i))
+        {
+            printf("%d ",i);
+        }
+    }
+    return 0;
+}
