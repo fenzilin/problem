@@ -1,0 +1,53 @@
+#include<bits/stdc++.h> 
+const int N = 5e4+10;
+int a[N];
+int b[N];
+using namespace std;
+bool res(int m)
+{
+    for(int i = 1; i <= m; i++)
+        cin>>a[i];
+    for(int i = 1; i <= m; i++)
+        cin>>b[i];
+    bool judge1=1;
+	int res=0;
+	bool judge2=1;
+	for(int i=1;i<=m;i++)
+	{
+		a[i]=max(0,a[i]-res);
+		if(a[i]<b[i])
+		{
+			judge2=0;
+			break;
+		}
+		if(a[i]!=b[i]&&judge1)
+		{
+			res+=a[i]-b[i];
+			a[i]=b[i];	
+		}
+		if(a[i]==b[i]&&a[i]) judge1=0;
+		if(a[i]!=b[i]&&!judge1)
+		{
+			judge2=0;
+			break;
+		}
+		
+	}
+	return judge2;
+}
+int main( )
+{
+    int n;
+    cin>>n;
+    while (n -- )
+    {
+        int m;
+        bool judge2 = 1;
+        cin>>m;
+        
+        judge2 = res(m);
+        if(judge2) cout<<"YES"<<endl;
+		else cout<<"NO"<<endl;
+    }
+    return 0;
+}
