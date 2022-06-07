@@ -1,0 +1,19 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int n,m,r,s=0;
+    cin>>n;   
+    r = n;
+    while(n)
+    {
+        m=n%10;
+        s+=pow(m,3);
+        n=n/10;
+    }
+    if(s==r) printf("Y");
+    else printf("N");
+    return 0;
+}
