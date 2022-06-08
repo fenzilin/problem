@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+const int N = 110;
+int a[N];
+using namespace std;
+
+int main(){
+	int n,m,res;
+	m = 0;
+	cin>>n>>res;
+	for(int i = 0; i < n; i++)
+	{
+	    scanf("%d", &a[i]);
+	}
+	for(int i = 0; i < n; i++)
+	    for(int j = i + 1; j < n; j++)
+	        if(a[i] + a[j] == res) 
+	            m = 1;
+	cout<<m;
+	return 0;
+}
