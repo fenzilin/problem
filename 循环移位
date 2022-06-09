@@ -1,0 +1,25 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+unsigned move(unsigned value, int n)
+{
+    unsigned res;
+    if(n==0) res = value;
+    else if(n>0)    res = (value>>n) | (value<<(4-n));
+    else    res = (value<<-n) | (value>>(4+n));
+    
+    res = res<<(sizeof(unsigned)*8-4);
+    res = res>>(sizeof(unsigned)*8-4);
+    return res;
+    
+}
+int main( )
+{
+    unsigned num;
+    int n = 0;
+    cin>>num>>n;
+    n = n%4;
+    num = move(num,n);
+    cout<<num;
+    return 0;
+}
