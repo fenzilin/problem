@@ -1,0 +1,13 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+unsigned char change(unsigned char n){
+    return (n>>4)|(n<<4);
+}
+int main()
+{
+    unsigned char n;
+    cin>>n;
+    cout<<change(n);
+    return 0;
+}
