@@ -1,0 +1,23 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+int fun(int N){
+    
+    int i = 0, j = log2(N);
+    
+    while(i <= j){
+        if((1 & (N>>i))!=(1 & (N>>j))) 
+            return 0;
+        i++;
+        j--;
+    }
+    return 1;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    if(fun(n)) cout<<"YES";
+    else cout<<"NO";
+    return 0;
+}
