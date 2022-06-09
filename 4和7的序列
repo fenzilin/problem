@@ -1,0 +1,16 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+int fun(int n)
+{
+    if(n<=0) return 0;
+    if(n%2==1) return 10*fun((n-1)/2)+4;
+    return 10*fun((n-1)/2)+7;
+}
+int main( )
+{
+    int n;
+    cin>>n;
+    cout<<fun(n);
+    return 0;
+}
