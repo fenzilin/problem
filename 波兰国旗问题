@@ -1,0 +1,29 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    char a[100];
+    int n;
+    cin>>n;
+    cin>>a;
+    int high = n-1, low = 0;
+    while(high>low){
+        if(a[low] == '0' && a[high] == '0') low++;
+        else if(a[low]=='1' && a[high]=='1') high--;
+        else if(a[low]=='0' && a[high]=='1') {
+            high--;
+            low++;
+        }
+        else{
+            char temp = a[low];
+            a[low] = a[high];
+            a[high] = temp;
+            high--;
+            low++;
+        }
+    }
+    cout<<a;
+    return 0;
+}
