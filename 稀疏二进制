@@ -1,0 +1,16 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+int nextSparse(int n){
+    while(1){
+        if(n & (n<<1)) n++;
+        else return n;
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<nextSparse(n);
+    return 0;
+}
