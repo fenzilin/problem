@@ -1,0 +1,17 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+void mymath(int a, int b,char op)
+{
+    if(op=='*')     printf("%d",a*b);
+    else if(op=='/')    printf("%lf",(double)a/b);
+    else if(op=='%')    printf("%d", a%b);
+}
+int main( )
+{
+    int a,b;
+    char op;
+    scanf("%d%c%d",&a,&op,&b);
+    mymath(a,b,op);
+    return 0;
+}
