@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main()
+{
+	ll x,a,d,n;
+	cin>>x>>a>>d>>n;
+	if(d==0) cout<<abs(x-a)<<endl;
+	else 
+	{
+		ll t=(x-a)/d;
+		if(t<0) cout<<abs(a-x);
+		else if(t>=n-1) cout<<abs(x-a-(n-1)*d);
+		else cout<<min(abs(x-a-t*d),abs(t*d+d+a-x));
+	}
+}
