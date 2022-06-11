@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+struct node
+{
+	double x;
+	double y;
+};
+double dis(node a,node b)
+{
+	double dis1=(a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y);
+	return sqrt(dis1);
+}
+double max(double a,double b)
+{
+	if(a>b) return a;
+	else return b;
+}
+double min(double a,double b)
+{
+	if(a<b) return a;
+	else return b;
+}
+node a[1100];
+double b[1100];
+ 
+int main()
+{
+	int n,k;
+	cin>>n>>k;
+	for(int i=1;i<=k;i++) cin>>b[i];
+	for(int i=1;i<=n;i++) cin>>a[i].x>>a[i].y;
+	double cnt=0;;
+	for(int i=1;i<=n;i++)
+	{
+		double res=1e10;
+		for(int j=1;j<=k;j++)
+		{
+			int t=b[j];
+			res=min(res,dis(a[t],a[i]));
+		}
+		cnt=max(cnt,res);
+	}
+	printf("%.6lf",cnt);
+}
