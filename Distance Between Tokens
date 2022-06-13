@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <set>
+#include <queue>
+#include <map>
+#include <stdio.h>
+#include <iomanip>
+#include <stack>
+#include <math.h>
+#include <bitset>
+using namespace std;
+using ll = long long;
+ 
+ 
+int main()
+{
+	int h, w;
+	cin >> h >> w;
+	vector<string> s(h);
+	for (int i = 0; i < h; i++) {
+		cin >> s[i];
+	}
+ 
+	int x1 = 0, y1 = 0;
+	bool ch = true;
+ 
+	for (int i = 0; i < h; i++) {
+		for (int j = 0; j < w; j++) {
+			if (s[i][j] == 'o' && ch) {
+				x1 = i + 1;
+				y1 = j + 1;
+				ch = false;
+			}
+			else if (s[i][j] == 'o' && !ch) {
+				int sum = 0;
+				sum += abs(i + 1 - x1);
+				sum += abs(j + 1 - y1);
+				cout << sum << endl;
+				return 0;
+			}
+		}
+	}
+	return 0;
+}
