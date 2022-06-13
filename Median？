@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int num[3];
+   cin>>num[0];
+   cin>>num[1];
+   cin>>num[2];
+   int p=num[1];
+   sort(num,num+3);
+   if(p==num[1])
+   {
+       printf("Yes\n");
+   }
+   else printf("No\n");
+}
