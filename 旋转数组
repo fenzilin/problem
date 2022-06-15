@@ -1,0 +1,34 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+void arrayCopy(int sour[], int beginS, int n, int dest[], int beginD){
+    for(int i = 1; i <= n; i++)
+    {
+        dest[beginD++] = sour[beginS++];
+    }
+}
+int main( )
+{
+    int a[100] = {0}, b[100] = {0};
+    int n;
+    for(int i = 0; i < 10; i++)
+    {
+        cin>>a[i];
+    }
+    cin>>n;
+    if(n>=0){
+        n = n % 10;
+        arrayCopy(a,10-n,n,b,0);
+        arrayCopy(a,0,10-n,b,n);
+    }
+    else
+    {
+        n = (-1 * n) % 10;
+        arrayCopy(a,n,10-n,b,0);
+        arrayCopy(a,0,n,b,10-n);
+    }
+    
+    for(int i = 0; i < 10; i++)
+        cout<<b[i]<<" ";
+    return 0;
+}
