@@ -1,0 +1,36 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int a[100] = {0}, b[100] = {0}, lenA, lenB;
+    int num = 0, temp;
+    cin>>lenA>>lenB;
+    for(int i =0; i < lenA; i++)
+        cin>>a[i];
+    for(int i =0; i < lenB; i++)
+        cin>>b[i];
+    sort(a,a+lenA);
+    sort(b,b+lenB);
+    for(int pa=0, pb=0;pa<lenA && pb<lenB;) {
+        if(a[pa]==b[pb]){
+            if(num==0) {
+                num++;
+                temp = a[pa];
+            }
+            else{
+                if(a[pa]!=temp) {
+                    num++;
+                    temp = a[pa];
+                }
+            }
+            pa++;
+            pb++;
+        }
+        else if (a[pa] > b[pb]) pb++;
+        else pa++;
+    }
+    printf("%d",num);
+    return 0; 
+}
