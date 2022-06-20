@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+int a[10];
+bool st[10];
+int res;
+void dfs(int u)
+{
+  if(u==5)
+  {
+    
+    
+      int s1=a[0]*10+a[1];
+      int s2=a[2]*100+a[3]*10+a[4];
+      int s3=a[0]*100+a[3]*10+a[1];
+      int s4=a[2]*10+a[4];
+
+      if( (s1*s2)==(s3*s4) ){
+      res++;
+    
+    }
+    return;
+  }
+  for(int i=1;i<=9;i++)
+  {
+    if(!st[i])
+    {
+      a[u]=i;
+      st[i]=true;
+      dfs(u+1);
+      st[i]=false;
+    }
+  }
+}
+int main()
+{
+  dfs(0);
+  cout<<res;
+  return 0;
+}
