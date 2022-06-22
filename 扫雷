@@ -1,0 +1,52 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int arr[102][102];
+void visit(int i, int j, int n, int m, vector < vector<int>>& res)
+{
+    int sum = 0;
+    for (int p = i - 1; p <= i + 1; p++)
+    {
+        for (int q = j - 1; q <= j + 1; q++)
+        {
+            if (p<1 || p>n || q<1 || q>m)
+                continue;
+            if (arr[p][q] == 1)
+                sum++;
+        }
+    }
+    res[i][j]=sum;
+}
+int main()
+{
+    // 请在此输入您的代码
+    int n, m;
+    cin >> n >> m;
+    vector < vector<int>>res(n+1, vector<int>(m+1));
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            cin >> arr[i][j];
+            if (arr[i][j] == 1)
+                res[i][j]=9;
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            if (arr[i][j] != 1)
+                visit(i, j, n, m, res);
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j<=m; j++)
+        {
+            cout << res[i][j]<<" ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
