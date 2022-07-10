@@ -1,0 +1,25 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+void fun(char *str)
+{
+    char s[100];
+    int j = 0, n = strlen(str);
+    for(int i = 1; i < n; i = i+2)
+        if(str[i] % 2 != 0)
+            s[j++] = str[i];
+    s[j] = '\0';
+    int len = strlen(s);
+    for(int i = 0; i < len; i++)
+        str[i] = s[i];
+    str[len] = '\0';
+}
+
+int main( )
+{
+    char str[100];
+    cin.getline(str, 100);
+    fun(str);
+    printf("%s",str);
+    return 0;
+}
