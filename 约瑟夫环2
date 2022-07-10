@@ -1,0 +1,51 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+typedef struct  Node{
+    int value;
+    Node *next;
+} NODE, *PNODE, *NodeList;
+PNODE creatNode (int value, PNODE next)
+{
+    PNODE node = (PNODE) malloc(sizeof(NODE));
+    node->value = value;
+    node->next  = next;
+    return node;
+}
+int main( )
+{
+    int n,m;
+    cin>>n>>m;
+    NodeList head,last;
+    for(int i = 0; i < n; ++i){
+        PNODE node = creatNode(i+1, NULL);
+        if(i == 0) {
+            head = node;
+            last = node;
+        }
+        else {
+            last -> next = node;
+            last = node;
+        } 
+        if( i == n-1)
+            last->next = head;
+    }
+    int i = 1;
+    while(head->next != head) {
+        if(i == m) {
+            PNODE p = head;
+            last->next = head->next;
+            printf("%d ",head->value);
+            free(p);
+            i = 1;
+            head = last->next;
+        }
+        else {
+            last = head;
+            head = head->next;
+            i++;
+        }
+    }
+    printf("%d",head->value);
+    return 0;
+}
