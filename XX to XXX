@@ -1,0 +1,79 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+#define pb push_back
+const int N = 100010;
+vector<int> idx1, idx2;
+int num[N];
+string work1(string s)
+{
+	string t = "";
+	for(int i = 0; i < (int)s.size(); i ++)
+	{
+		t += s[i];
+		int j = i;
+		if(s[j + 1] == s[i] && j + 1 < s.size()) 
+		{
+			while(s[j + 1] == s[i] && j + 1 < s.size()) j ++;
+		}
+		if(j != i) t += s[i];
+		i = j;
+	}
+	return t;
+}
+
+void work2(string s, vector<int> &a)
+{
+	for(int i = 0; i < (int)s.size(); i ++)
+	{
+		int j = i;
+		if(s[j + 1] == s[i] && j + 1 < s.size()) 
+		{
+			while(s[j + 1] == s[i] && j + 1 < s.size()) j ++;
+		}
+		a.pb(j - i);
+		i = j;
+	}
+}
+void sum()
+{
+    int a = 0;
+    for(int k = 0; k < 1000; k++)
+        for(int l = 0; l <= 100; l++)
+            a ++;
+    
+    for(int k = 0; k < 1000; k++)
+        for(int l = 0; l < 1000; l++)
+            num[k] = l+1;
+}
+
+
+int main()
+{
+    string s, t;
+    cin >> s >> t;
+    sum();
+    if(s.size() > t.size()) 
+    {
+    	cout<<"NO";
+    	return 0;
+    }
+    work2(s, idx1);
+    work2(t, idx2);
+    s = work1(s);
+    t = work1(t);
+    bool f = true;
+    if(idx1.size() != idx2.size()) f = false;
+    else {
+    	for(int i = 0; i < idx1.size(); i ++)
+    		if(idx1[i] > idx2[i]) 
+    		{
+    			f = false;
+    			break;
+    		}
+    }
+    if(s == t && f) puts("Yes");
+    else puts("No");
+
+    return 0;
+}
